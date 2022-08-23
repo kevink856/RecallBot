@@ -5,6 +5,7 @@ const prefixesPath = "./data/prefixes.json";
 const prefixes = require(prefixesPath);
 const guildsPath = "./data/guilds.json";
 const guilds = require(guildsPath);
+const iconEmoji = "<:icon:1011760939122573412>";
 require("dotenv").config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent] });
@@ -103,7 +104,7 @@ client.on("messageCreate", m => {
 							}
 							guildHistoryEmbed.addFields({ name: `**${tempWord}**`, value: `${row.totalCount} times`, inline: true });
 						})
-						: guildHistoryEmbed.setDescription("<:recall:1009990978456801380> This server has no chat activity!");
+						: guildHistoryEmbed.setDescription(`${iconEmoji} This server has no chat activity!`);
 					m.channel.send({ embeds: [guildHistoryEmbed] });
 				});
 			}
@@ -128,7 +129,7 @@ client.on("messageCreate", m => {
 							}
 							userHistoryEmbed.addFields({ name: `**${tempWord}**`, value: `${row.count} times`, inline: true });
 						})
-						: userHistoryEmbed.setDescription("<:recall:1009990978456801380> This user has no chat activity!");
+						: userHistoryEmbed.setDescription(`${iconEmoji} This user has no chat activity!`);
 					m.channel.send({ embeds: [userHistoryEmbed] });
 				});
 			}
@@ -147,7 +148,7 @@ client.on("messageCreate", m => {
 					if (err) console.log(err);
 					row
 						? userHistoryEmbed.setDescription(`**${mentionedUser.username}** has said **${row.words}** ${row.count} times`)
-						: userHistoryEmbed.setDescription("<:recall:1009990978456801380> This user has never said this word!");
+						: userHistoryEmbed.setDescription(`${iconEmoji} This user has never said this word!`);
 					m.channel.send({ embeds: [userHistoryEmbed] });
 				});
 			}
@@ -158,7 +159,7 @@ client.on("messageCreate", m => {
 		case "prefix":
 			if (args.length == 1) {
 				m.channel.send({ embeds: [new EmbedBuilder()
-					.setDescription(`<:recall:1009990978456801380> Recall commands start with **${prefix}**`)
+					.setDescription(`${iconEmoji} Recall commands start with **${prefix}**`)
 					.setColor(0x3a89ff)] });
 			}
 			else {
@@ -168,7 +169,7 @@ client.on("messageCreate", m => {
 					if (err) console.log(err);
 				});
 				m.channel.send({ embeds: [new EmbedBuilder()
-					.setDescription(`<:recall:1009990978456801380> The prefix has been changed to **${newPrefix}**`)
+					.setDescription(`${iconEmoji} The prefix has been changed to **${newPrefix}**`)
 					.setColor(0x3a89ff)] });
 			}
 			break;
