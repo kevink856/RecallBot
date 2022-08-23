@@ -81,7 +81,7 @@ client.on("messageCreate", m => {
 
 	if (m.author.bot) { return; }
 	if (m.content.substring(0, prefix.length) == prefix) {
-		const args = m.content.substring(prefix.length).split(" ");
+		const args = m.content.substring(prefix.length).replace(/\s\s+/g, " ").split(" ");
 		const cmd = args[0];
 		switch (cmd) {
 		case "help":
@@ -180,7 +180,7 @@ client.on("messageCreate", m => {
 	}
 	else {
 		db.run(`CREATE TABLE IF NOT EXISTS words${m.guild.id}${m.author.id} (Words TEXT PRIMARY KEY, Count INTEGER NOT NULL DEFAULT 1)`);
-		const args = m.content.split(" ");
+		const args = m.content.replace(/\s\s+/g, " ").split(" ");
 		args.forEach(tempArg => {
 			let arg = tempArg;
 			if (arg.startsWith("http://") || arg.startsWith("https://") || arg.length < 1) {
