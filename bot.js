@@ -48,6 +48,7 @@ client.once("ready", c => {
 // Run everytime bot joins a new server
 client.on("guildCreate", g => {
 	updateGuildData(g);
+	console.log(`Joined server ${g.name}!`);
 });
 
 // Run everytime bot leaves a server
@@ -68,6 +69,7 @@ client.on("guildDelete", g => {
 	fs.writeFile(guildsPath, JSON.stringify(guilds, null, 4), function writeJSON(err) {
 		if (err) console.log(err);
 	});
+	console.log(`Left server ${g.name}!`);
 });
 
 // Run everytime a message is sent
