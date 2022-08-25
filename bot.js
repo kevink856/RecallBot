@@ -79,7 +79,7 @@ client.on("messageCreate", m => {
 		.setTitle("Recall Help")
 		.setDescription(`Recall commands start with **${prefix}**`)
 		.setColor(0x3a89ff)
-		.addFields({ name: "Commands", value: "[**Command List**](https://websiteindevelopment.com)" });
+		.addFields({ name: "Commands", value: "[**Command List**](https://kevink856.github.io/RecallWebsite/commands)" });
 
 	if (m.author.bot) { return; }
 	if (m.content.substring(0, prefix.length) == prefix) {
